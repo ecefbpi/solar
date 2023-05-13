@@ -114,7 +114,7 @@ def show_main_graph(figure):
 def generate_tables(kw, tableM, tableY):
     dfM = pd.DataFrame(tableM[kw])
     dfY = pd.DataFrame(tableY[kw])
-
+    dfM.index = [x for x in range(0,12)]
     return dbc.Table.from_dataframe(dfM, striped=True, bordered=True, hover=True, color='success'), \
            dbc.Table.from_dataframe(dfY, striped=True, bordered=True, hover=True, color='success')
 
