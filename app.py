@@ -114,7 +114,10 @@ def show_main_graph(figure):
 def generate_tables(kw, tableM, tableY):
     dfM = pd.DataFrame(tableM[kw])
     dfY = pd.DataFrame(tableY[kw])
-    dfM.index = [x for x in range(0,12)]
+    dfM['newCol']= dfM['Month'].apply(lambda x: [k for k, v in MONTH_STR.items() if v == x][0])
+    dfM.sort_values(by=['newCol'], inplace=True)
+    dfM.drop(columns=['newCol'], inplace=True)
+
     return dbc.Table.from_dataframe(dfM, striped=True, bordered=True, hover=True, color='success'), \
            dbc.Table.from_dataframe(dfY, striped=True, bordered=True, hover=True, color='success')
 
